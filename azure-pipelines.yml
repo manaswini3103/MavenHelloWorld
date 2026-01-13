@@ -15,4 +15,4 @@ steps:
     mavenPomFile: 'pom.xml'
     goals: 'package'
     javaHomeOption: 'Path'
-    jdkDirectory: 'C:\Program Files\Java\jdk-25'
+    jdkDirectory: 'C:\programfiles\Java\jdk-25.0.1'
