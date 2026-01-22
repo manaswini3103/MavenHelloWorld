@@ -5,25 +5,17 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-# 1. Build the Maven project
+# 1. Maven build
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'package'
 
-# 2. Publish artifacts (optional, if you want to keep WAR)
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: 'target/*.war'
-    ArtifactName: 'warfile'
-    publishLocation: 'Container'
-
-# 3. Build Docker image
+# 2. Docker build (no push)
 - task: Docker@2
   inputs:
-    containerRegistry: '<your-container-registry-service-connection>'  # optional, if pushing
-    repository: 'mavenhelloworld'
-    command: 'buildAndPush'  # use 'build' if you don't want to push
-    Dockerfile: 'Dockerfile'
+    command: build
+    Dockerfile: Dockerfile
     tags: |
-      $(Build.BuildId)
+      mavenhelloworld:$(Build.BuildId)
+
