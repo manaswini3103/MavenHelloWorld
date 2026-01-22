@@ -1,18 +1,5 @@
-trigger:
-- main
-
-pool:
-  vmImage: ubuntu-latest
-
-steps:
-- task: Maven@4
-  inputs:
-    mavenPomFile: 'pom.xml'
-    goals: 'package'
-
-- task: Docker@2
-  inputs:
-    command: build
-    Dockerfile: Dockerfile
-    tags: |
-      mavenhelloworld:$(Build.BuildId)
+FROM openjdk:17-jdk-alpine
+WORKDIR /app
+COPY target/*.war app.war
+EXPOSE 8080
+CMD ["java", "-jar", "app.war"]
