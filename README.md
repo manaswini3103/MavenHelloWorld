@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 Devops Project
-=======
 # Introduction 
 TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
 
@@ -21,4 +19,3 @@ If you want to learn more about creating good readme files then refer the follow
 - [ASP.NET Core](https://github.com/aspnet/Home)
 - [Visual Studio Code](https://github.com/Microsoft/vscode)
 - [Chakra Core](https://github.com/Microsoft/ChakraCore)
->>>>>>> a6a829a42ae99849e45fd1b05dfbd725a7cb6697
