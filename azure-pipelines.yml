@@ -1,28 +1,21 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
-# Another comment
-
 trigger:
 - main
 
 pool:
-   name: SelfHosted
+  vmImage: 'ubuntu-latest'
 
 steps:
+# 1. Maven build
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'package'
-    javaHomeOption: 'Path'
-    jdkDirectory: 'C:\programfiles\Java\jdk-25.0.1'
-- task: CopyFiles@2
+
+# 2. Docker build (no push)
+- task: Docker@2
   inputs:
-    Contents: '**/*.war'
-    TargetFolder: '$(build.artifactstagingdirectory)'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'warfile'
-    publishLocation: 'Container'
+    command: build
+    Dockerfile: Dockerfile
+    tags: |
+      mavenhelloworld:$(Build.BuildId)
+

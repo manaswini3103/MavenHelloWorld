@@ -1,3 +1,5 @@
-FROM tomcat:latest
-COPY ./webapp.war /usr/local/tomcat/webapps
-RUN cp -r /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps
+FROM eclipse-temurin:17-jre-alpine
+WORKDIR /app
+COPY webapp/target/*.war app.war
+EXPOSE 8080
+CMD ["java", "-jar", "app.war"]
